@@ -1,4 +1,5 @@
 <html lang="en-us">
+{% load static %}
 <head>
     <title>HOME | SKKUWEB</title>
 
@@ -12,7 +13,8 @@
           href="https://d3s2irdjyrlkk2.cloudfront.net/compiled/css/components/photo-gallery.css?id=201010c713204b3787855b44d2">
     <link rel="stylesheet" media="all" type="text/css"
           href="https://d3s2irdjyrlkk2.cloudfront.net/user-css-create/999999/49749.css?id=-62169984000">
-    <link rel="stylesheet" type="text/css" href="../../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href='{% static "css/style.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/lightslider.css" %}'>
 
 </head>
 <body class="u49749-site-bg-color u49749-site-bg-image u49749-home body-to-show">
@@ -29,7 +31,7 @@
                          data-ps-id="e7b3c694-663c-fad9-1e80-813967dcf1ce" style="height: 1248.25px;">
                         <div class="user-logo-custom">
                             <a href="/">
-                                <img src="../../static/images/logo.png" alt="Site Logo" style="display: inline;">
+                                <img src="{% static 'images/logo.png' %}" alt="Site Logo" style="display: inline;">
                             </a>
                         </div>
 
@@ -135,13 +137,16 @@
 
             </div>
         </div>
-        <div class="stage-spacing  u49749-site-stage-color fit" data-padding="1" data-pfooter="2">
+        <div class="stage-spacing homePageGallery" data-padding="1" data-pfooter="2">
             {% block mainGallery %}
             {% endblock %}
 
         </div>
     </div>
-</div>
 
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/lightslider.js' %}"></script>
+    <script src="{% static 'js/homePageSlider.js' %}"></script>
 </body>
+
 </html>
