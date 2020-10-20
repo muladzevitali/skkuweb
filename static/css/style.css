@@ -1,0 +1,31 @@
+.social_button_instagram {
+    cursor: default;
+    user-select: none;
+    position: absolute;
+    display: block;
+    width: 28px;
+    height: 28px;
+    font-family: "Source Sans Pro", sans-serif;
+    left: 1em;
+    top: 25em;
+}
+
+.social_button_instagram svg {
+    position: absolute;
+    display: block;
+    top: 0;
+    text-decoration: none;
+    opacity: 1;
+}
+
+.social_button_facebook {
+    cursor: default;
+    user-select: none;
+    position: absolute;
+    display: block;
+    font-family: "Source Sans Pro", sans-serif;
+    width: 28px;
+    height: 28px;
+    left: 5em;
+    top: 25.5em;
+}
