@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/lightslider.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/custom-page.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/commons.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/grid-gallery.css" %}'>
 
 </head>
 <body class="u49749-site-bg-color u49749-site-bg-image u49749-home body-to-show">
@@ -49,7 +50,8 @@
                                 </li>
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'home' %} cur-active-link{% endif %}" href="/">HOME</a>
+                                        <a class="{% if category == 'home' %} cur-active-link{% endif %}"
+                                           href="/">HOME</a>
                                     </div>
                                 </li>
 
@@ -61,7 +63,8 @@
                                 </li>
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'portfolio' %}cur-active-link{% endif %}" href="/">PORTFOLIO</a>
+                                        <a class="{% if category == 'portfolio' %}cur-active-link{% endif %}"
+                                           href="{% url 'web:portfolio' %}">PORTFOLIO</a>
                                     </div>
                                 </li>
 
@@ -79,7 +82,8 @@
 
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'about' %}cur-active-link{% endif %}" href="{% url 'web:about_me' %}">ABOUT</a>
+                                        <a class="{% if category == 'about' %}cur-active-link{% endif %}"
+                                           href="{% url 'web:about_me' %}">ABOUT</a>
                                     </div>
                                 </li>
 
@@ -91,13 +95,15 @@
                                 </li>
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'book_online' %}cur-active-link{% endif %}" href="/">BOOK ONLINE</a>
+                                        <a class="{% if category == 'book_online' %}cur-active-link{% endif %}"
+                                           href="/">BOOK ONLINE</a>
                                     </div>
                                 </li>
 
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'contact' %}cur-active-link{% endif %}" href="{% url 'web:contact' %}">CONTACT</a>
+                                        <a class="{% if category == 'contact' %}cur-active-link{% endif %}"
+                                           href="{% url 'web:contact' %}">CONTACT</a>
                                     </div>
                                 </li>
 
@@ -153,13 +159,14 @@
                 </div>
 
             </div>
-                {% block mainContent %}
-                {% endblock %}
+            {% block mainContent %}
+            {% endblock %}
         </div>
     </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/lightslider.js' %}"></script>
-    <script src="{% static 'js/homePageSlider.js' %}"></script>
-</body>
 
+</body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/lightslider.js' %}"></script>
+<script src="{% static 'js/homePageSlider.js' %}"></script>
+<script src="{% static 'js/grid-gallery.js' %}"></script>
 </html>

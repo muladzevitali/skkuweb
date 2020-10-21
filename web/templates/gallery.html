@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+<div class="stage-spacing stage-spacing-contentbox u49749-site-stage-color fit" data-padding="1" data-pfooter="2">
+
+        <div class="coverbanner-container stage-spacing-cover">
+        </div>
+
+    <div class="gg-container">
+        <div class="gg-box" id="horizontal-dark">
+            {% for image_path in images_paths %}
+                <img src="{{ image_path }}" alt="gallery-image" class="gallery-image">
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
