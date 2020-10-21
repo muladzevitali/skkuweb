@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+    <div class="stage-spacing stage-spacing-contentbox u49749-site-stage-color fit" data-padding="1" data-pfooter="2">
+
+        <div class="coverbanner-container stage-spacing-cover">
+        </div>
+        <div id="" class="is-wrapper ">
+            <div class="is-section is-section-75 is-box">
+                <div class="is-boxes">
+                    <div class="is-box-centered">
+                        <div class="is-container is-builder container is-content-980" id="contentareak8Pv6">
+                            <div class="row edge-to-egde  clearfix">
+                                <div class="column full">
+                                    <br><br></div>
+                            </div>
+                            <div class="demo-snippet row">
+                                <div class="row clearfix"></div>
+                                <div class="row clearfix">
+                                    <div class="column half contact-form flow-opposite">
+                                        <h3><br></h3>
+                                        <p>Based in New Tbilisi, Georgia</p>
+                                        <p>I can be reached on dragonrohgm@gmail.com</p>
+                                        <p>or +995 585623152<br><br></p>
+                                        <form id="contact-form" method="post" action="{% url 'web:contact' %}">
+                                            {% csrf_token %}
+                                            <label for="name">
+                                                <input type="text" name="name" placeholder="Name" required="">
+                                            </label>
+                                            <label for="email">
+                                                <input type="email" name="email" placeholder="Email" required="">
+                                            </label>
+                                            <label for="message">
+                                                <textarea name="message" placeholder="Message" required=""></textarea>
+                                            </label>
+                                            <button type="submit" value="Send" class="form-snippit-submit edit"
+                                                    data-text-swap="Sending...">SEND
+                                            </button>
+                                            {% if success %}
+                                                <span class="js-sendmail-thank-you"
+                                                      style="font-size:12px;letter-spacing: 0.1em;text-transform: uppercase;"> Thank you for contacting. </span>
+                                            {% endif %}
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="column full">
+                                        <div><br></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}

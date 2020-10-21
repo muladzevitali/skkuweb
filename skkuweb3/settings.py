@@ -96,18 +96,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Seoul'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'muladzevitali499@gmail.com'
+EMAIL_HOST_PASSWORD = 'chanchura1'
+EMAIL_USE_TLS = True
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_URL = '/static/'

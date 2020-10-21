@@ -6,8 +6,8 @@
     width: 28px;
     height: 28px;
     font-family: "Source Sans Pro", sans-serif;
-    left: 1.4m;
-    top: 25em;
+    left: 1.4em;
+    top: 45em;
 }
 
 .social_button_instagram svg {
@@ -27,10 +27,14 @@
     width: 28px;
     height: 28px;
     left: 5em;
-    top: 25em;
+    top: 45em;
 }
 
 .homePageGallery{
     padding-left: 20% !important;
     align-items: center !important;
+}
+
+.homePageLogo{
+    margin-left: -25% !important;
 }
