@@ -1,9 +1,10 @@
 from pathlib import Path
+
 from PIL import Image
-from django.shortcuts import (render, redirect)
-from django.core.mail import send_mail
 from django.conf import settings
+from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.shortcuts import (render, redirect)
 
 from .forms import ContactForm
 from .models import Contact
@@ -43,15 +44,16 @@ def contact(request):
     return render(request, 'contact.html', {'category': 'contact', 'form': form, 'success': success_send})
 
 
-def portfolio(request):
-    portfolio_images = [Path('media', 'thumb', path.parent.name, path.name) for path in
-                        settings.PORTFOLIO_IMAGES_ROOT.iterdir()]
+def portfolio(request, subclass):
+    portfolio_images = [Path('media', 'thumb', path.parent.parent.name, path.parent.name, path.name) for path in
+                        settings.PORTFOLIO_IMAGES_ROOT.joinpath(subclass).iterdir()]
 
-    return render(request, 'gallery.html', {'category': 'portfolio', 'images_paths': portfolio_images})
+    return render(request, 'gallery.html',
+                  {'category': 'portfolio', 'images_paths': portfolio_images, 'subclass': subclass})
 
 
-def get_thumb_image(request, parent_folder, image_name):
-    image_path = settings.IMAGES_FOLDER_ROOT.joinpath(parent_folder).joinpath(image_name)
+def get_thumb_image(request, class_folder, parent_folder, image_name):
+    image_path = settings.IMAGES_FOLDER_ROOT.joinpath(class_folder).joinpath(parent_folder).joinpath(image_name)
     response = HttpResponse(content_type="image/jpeg")
     try:
         image = Image.open(image_path)
@@ -65,8 +67,8 @@ def get_thumb_image(request, parent_folder, image_name):
     return response
 
 
-def get_large_image(request, parent_folder, image_name):
-    image_path = settings.IMAGES_FOLDER_ROOT.joinpath(parent_folder).joinpath(image_name)
+def get_large_image(request, class_folder, parent_folder, image_name):
+    image_path = settings.IMAGES_FOLDER_ROOT.joinpath(class_folder).joinpath(parent_folder).joinpath(image_name)
     try:
         with open(str(image_path), "rb") as input_stream:
             image = input_stream.read()

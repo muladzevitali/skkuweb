@@ -2,6 +2,7 @@
 {% load static %}
 <head>
     {% block title %}
+        <title></title>
     {% endblock %}
     <link rel="shortcut icon" type="image/*"
           href="https://s3-img.pixpa.com/com/large/49749/49749-1580544521-favicon1.png">
@@ -19,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/custom-page.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/commons.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/grid-gallery.css" %}'>
+    <script type="text/javascript"
+            src="https://d3s2irdjyrlkk2.cloudfront.net/compiled/js/all.js?id=2010101815084575323957af13"></script>
 
 </head>
 <body class="u49749-site-bg-color u49749-site-bg-image u49749-home body-to-show">
@@ -61,17 +64,25 @@
                                         </a>
                                     </div>
                                 </li>
-                                <li class="nav-list-common js-nav-list-common">
-                                    <div class="drop-group">
-                                        <a class="{% if category == 'portfolio' %}cur-active-link{% endif %}"
-                                           href="{% url 'web:portfolio' %}">PORTFOLIO</a>
-                                    </div>
-                                </li>
 
-                                <li class="nav-list-common js-nav-list-common">
+                                <li class="nav-list-common js-nav-list-common is-dropdown {% if category == 'portfolio' %}sinker{% endif %}">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'presets' %}cur-active-link{% endif %}" href="/">PRESETS</a>
+                                        <a href="javascript:void(0)">PORTFOLIO</a>
                                     </div>
+                                    <ul class="nav-list-nested u49749-secondary-menu-bg js-nav-list-nested "
+                                        style="display: {% if category == 'portfolio' %}block{% else %}none{% endif %};">
+
+                                        <li class="list-nested-common">
+                                            <a class="{% if subclass == 'portraits' %}cur-active-link{% endif %}" href="{% url 'web:portfolio' subclass='portraits' %}">PORTRAITS</a>
+                                        </li>
+
+
+                                        <li class="list-nested-common">
+                                            <a class="{% if category == 'landscapes' %}cur-active-link{% endif %}" href="{% url 'web:portfolio' subclass='landscapes' %}">LANDSCAPES</a>
+                                        </li>
+
+
+                                    </ul>
                                 </li>
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
@@ -82,6 +93,13 @@
 
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
+                                        <a class="{% if category == 'presets' %}cur-active-link{% endif %}" href="/">PRESETS</a>
+                                    </div>
+                                </li>
+
+
+                                <li class="nav-list-common js-nav-list-common">
+                                    <div>
                                         <a class="{% if category == 'about' %}cur-active-link{% endif %}"
                                            href="{% url 'web:about_me' %}">ABOUT</a>
                                     </div>
@@ -96,7 +114,7 @@
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
                                         <a class="{% if category == 'book_online' %}cur-active-link{% endif %}"
-                                           href="/">BOOK ONLINE</a>
+                                           href="/">NOTICE</a>
                                     </div>
                                 </li>
 
@@ -117,7 +135,7 @@
                         </nav>
                         <div class="social-media-container social-media-center ">
                             <div data-identity="menu" class="social_button_instagram">
-                                <a target="_blank" href="https://www.facebook.com/" class="">
+                                <a target="_blank" href="https://www.instagram.com/andy.rphotography/" class="">
                                     <svg data-identity="menu" width="28" height="28">
                                         <g data-identity="menu" transform="scale(1.4)"
                                            style="position: absolute; display: block;">
@@ -163,10 +181,23 @@
             {% endblock %}
         </div>
     </div>
-
+</div>
 </body>
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/lightslider.js' %}"></script>
-<script src="{% static 'js/homePageSlider.js' %}"></script>
 <script src="{% static 'js/grid-gallery.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Header.headerInit();
+        Mobile.mobileInit();
+        const selector = $('body');
+
+        if (selector.find(".button-on-active-1") || selector.find(".button-on-active-2")) {
+            $('.button-on-active-1').parent().siblings().children('a').addClass('border-on-all');
+            $('.button-on-active-2').parent().siblings().children('a').addClass('border-on-all');
+        }
+    });
+</script>
+{% block pageStatics %}
+{% endblock %}
 </html>
