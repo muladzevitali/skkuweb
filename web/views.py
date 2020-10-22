@@ -2,14 +2,14 @@ from pathlib import Path
 
 from PIL import Image
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import (send_mail, EmailMessage)
 from django.http import HttpResponse
 from django.shortcuts import (render, redirect)
 
-from .forms import ContactForm
-from .models import Contact
+from .forms import (ContactForm, PresetForm)
+from .models import (Contact, Preset)
 
-RECIPIENT_LIST = ['muladzevitali@gmail.com', ]
+RECIPIENT_LIST = settings.RECIPIENT_LIST
 EMAIL_FROM = settings.EMAIL_HOST_USER
 THUMBNAIL_IMAGE_WIDTH = (1200, 1150)
 
@@ -67,8 +67,11 @@ def get_thumb_image(request, class_folder, parent_folder, image_name):
     return response
 
 
-def get_large_image(request, class_folder, parent_folder, image_name):
-    image_path = settings.IMAGES_FOLDER_ROOT.joinpath(class_folder).joinpath(parent_folder).joinpath(image_name)
+def get_large_image(request, class_folder, image_name, parent_folder=None):
+    if parent_folder:
+        image_path = settings.IMAGES_FOLDER_ROOT.joinpath(class_folder).joinpath(parent_folder).joinpath(image_name)
+    else:
+        image_path = settings.IMAGES_FOLDER_ROOT.joinpath(class_folder).joinpath(image_name)
     try:
         with open(str(image_path), "rb") as input_stream:
             image = input_stream.read()
@@ -80,3 +83,21 @@ def get_large_image(request, class_folder, parent_folder, image_name):
         return response
 
     return HttpResponse(image, content_type="image/jpeg")
+
+
+def presets(request, ):
+    form = PresetForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        print(form.cleaned_data)
+        preset = Preset.objects.get(pk=form.cleaned_data['preset_id'])
+        email = EmailMessage()
+        email.subject = '%s from skkuweb3' % preset.title
+        email.to = [form.cleaned_data['email'], ]
+        email.from_email = settings.EMAIL_HOST_USER
+        preset_file_path = settings.PRESETS_ROOT.joinpath(preset.file_path)
+        email.attach_file(preset_file_path)
+        email.body = preset.description
+        email.send()
+
+        return redirect('web:presets')
+    return render(request, 'presets.html', {'category': 'presets', 'presets': Preset.objects.all()})

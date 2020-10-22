@@ -42,3 +42,7 @@
 .gg-container, #imageGallery{
 	margin-top: 2% !important;
 }
+
+.sidebar{
+    z-index: 0 !important;
+}

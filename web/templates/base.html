@@ -20,6 +20,9 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/custom-page.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/commons.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/grid-gallery.css" %}'>
+{% block pageStatics%}
+{% endblock %}
+
     <script type="text/javascript"
             src="https://d3s2irdjyrlkk2.cloudfront.net/compiled/js/all.js?id=2010101815084575323957af13"></script>
 
@@ -32,7 +35,7 @@
             </div>
         </div>
         <div class="stage-body-center ">
-            <div class="sidebar">
+            <div class="sidebar" >
                 <div class="header-spacing u49749-header-bg-color">
                     <div class="metro-header js-vert-header u49749-vert-header-layout ps-container"
                          data-ps-id="e7b3c694-663c-fad9-1e80-813967dcf1ce" style="height: 1248.25px;">
@@ -73,12 +76,14 @@
                                         style="display: {% if category == 'portfolio' %}block{% else %}none{% endif %};">
 
                                         <li class="list-nested-common">
-                                            <a class="{% if subclass == 'portraits' %}cur-active-link{% endif %}" href="{% url 'web:portfolio' subclass='portraits' %}">PORTRAITS</a>
+                                            <a class="{% if subclass == 'portraits' %}cur-active-link{% endif %}"
+                                               href="{% url 'web:portfolio' subclass='portraits' %}">PORTRAITS</a>
                                         </li>
 
 
                                         <li class="list-nested-common">
-                                            <a class="{% if category == 'landscapes' %}cur-active-link{% endif %}" href="{% url 'web:portfolio' subclass='landscapes' %}">LANDSCAPES</a>
+                                            <a class="{% if category == 'landscapes' %}cur-active-link{% endif %}"
+                                               href="{% url 'web:portfolio' subclass='landscapes' %}">LANDSCAPES</a>
                                         </li>
 
 
@@ -93,7 +98,8 @@
 
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'presets' %}cur-active-link{% endif %}" href="/">PRESETS</a>
+                                        <a class="{% if category == 'presets' %}cur-active-link{% endif %}"
+                                           href="{% url 'web:presets' %}">PRESETS</a>
                                     </div>
                                 </li>
 
@@ -184,6 +190,9 @@
 </div>
 </body>
 <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/lightslider.js' %}"></script>
 <script src="{% static 'js/grid-gallery.js' %}"></script>
 <script type="text/javascript">
@@ -198,6 +207,6 @@
         }
     });
 </script>
-{% block pageStatics %}
+{% block pageJS %}
 {% endblock %}
 </html>
