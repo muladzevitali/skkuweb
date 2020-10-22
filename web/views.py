@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import (render, redirect)
 
 from .forms import (ContactForm, PresetForm)
-from .models import (Contact, Preset)
+from .models import (Contact, Preset, Notice)
 
 RECIPIENT_LIST = settings.RECIPIENT_LIST
 EMAIL_FROM = settings.EMAIL_HOST_USER
@@ -15,7 +15,9 @@ THUMBNAIL_IMAGE_WIDTH = (1200, 1150)
 
 
 def index(request):
-    return render(request, 'index.html', {'category': 'home'})
+    slider_images = [Path('slider').joinpath(path.name) for path in
+                     settings.SLIDER_IMAGES_FOLDER.iterdir()]
+    return render(request, 'index.html', {'category': 'home', 'slider_images': slider_images})
 
 
 def about_me(request):
@@ -85,19 +87,39 @@ def get_large_image(request, class_folder, image_name, parent_folder=None):
     return HttpResponse(image, content_type="image/jpeg")
 
 
-def presets(request, ):
+def get_slider_image(request, image_name):
+    image_path = settings.SLIDER_IMAGES_FOLDER.joinpath(image_name)
+    response = HttpResponse(content_type="image/jpeg")
+    try:
+        image = Image.open(image_path)
+        image.thumbnail((1708, 1140), Image.ANTIALIAS)
+
+        image.save(response, "JPEG")
+    except IOError:
+        red = Image.new('RGBA', (1, 1), (255, 0, 0, 0))
+        red.save(response, "JPEG")
+
+    return response
+
+
+def presets(request):
     form = PresetForm(request.POST)
     if request.method == 'POST' and form.is_valid():
-        print(form.cleaned_data)
         preset = Preset.objects.get(pk=form.cleaned_data['preset_id'])
+        print(form.cleaned_data, preset.file_path)
         email = EmailMessage()
         email.subject = '%s from skkuweb3' % preset.title
         email.to = [form.cleaned_data['email'], ]
         email.from_email = settings.EMAIL_HOST_USER
         preset_file_path = settings.PRESETS_ROOT.joinpath(preset.file_path)
         email.attach_file(preset_file_path)
-        email.body = preset.description
+        email.body = preset.description or ''
         email.send()
 
         return redirect('web:presets')
     return render(request, 'presets.html', {'category': 'presets', 'presets': Preset.objects.all()})
+
+
+def notices(request):
+    notices_ = Notice.objects.order_by('date').all()
+    return render(request, 'notices.html', {'category': 'notices', 'notices': notices_})

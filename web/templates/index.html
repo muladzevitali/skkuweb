@@ -8,14 +8,12 @@
 
         <div class="coverbanner-container stage-spacing-cover"></div>
         <ul id="imageGallery">
-            <li data-src="https://c87f2319ea344d9b3bca-6c530fbd13d0f5ce9cc51522e99a62b4.ssl.cf1.rackcdn.com/2017-Vancouver-Lifestyle-Photographer-Erich-Saide-Fitness-Sunset-City.jpg">
-                <img src="https://c87f2319ea344d9b3bca-6c530fbd13d0f5ce9cc51522e99a62b4.ssl.cf1.rackcdn.com/2017-Vancouver-Lifestyle-Photographer-Erich-Saide-Fitness-Sunset-City.jpg"
-                     alt="slider-1"/>
-            </li>
-            <li data-src="https://c87f2319ea344d9b3bca-6c530fbd13d0f5ce9cc51522e99a62b4.ssl.cf1.rackcdn.com/2017-Vancouver-Lifestyle-Photographer-Erich-Saide-Fitness-Running-Puma.jpg">
-                <img src="https://c87f2319ea344d9b3bca-6c530fbd13d0f5ce9cc51522e99a62b4.ssl.cf1.rackcdn.com/2017-Vancouver-Lifestyle-Photographer-Erich-Saide-Fitness-Running-Puma.jpg"
-                     alt="slider-1"/>
-            </li>
+            {% for image in slider_images %}
+                <li data-src="{{ image }}">
+                    <img src="{{ image }}" alt="slider-1"/>
+                </li>
+            {% endfor %}
+
         </ul>
         <div class="stage-spacing homePageGallery" data-padding="1" data-pfooter="2">
         </div>
@@ -24,5 +22,5 @@
 {% endblock %}
 
 {% block pageJS %}
-        <script src="{% static 'js/homePageSlider.js' %}"></script>
+    <script src="{% static 'js/homePageSlider.js' %}"></script>
 {% endblock %}

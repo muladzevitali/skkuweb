@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Notice | Andy Roh </title>
+{% endblock %}
+{% block pageStatics %}
+    <link rel="stylesheet" id="compiled.css-css"
+          href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.19.1.min.css?ver=4.19.1"
+          type="text/css" media="all">
+{% endblock %}
+{% block mainContent %}
+    <div class="stage-spacing stage-spacing-contentbox u49749-site-stage-color fit" data-padding="1" data-pfooter="2">
+
+        <div class="coverbanner-container stage-spacing-cover">
+        </div>
+        <div style="padding-left:2%; margin-top: 2%">
+        <div style="margin-bottom: 2%">
+            <h2 id="examples">
+                Entire Notice
+            </h2>
+</div>
+             <h6 id="examples">
+                Total: {{ notices |length }}
+            </h6>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for notice in notices %}
+                    <tr>
+                        <th scope="row">{{ notice.id }}</th>
+                        <td>{{ notice.title }}</td>
+                        <td>{{ notice.date }}</td>
+
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Card Regular -->
+        </div>
+    </div>
+{% endblock %}
+

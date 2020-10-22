@@ -30,19 +30,20 @@
     top: 45em;
 }
 
-.homePageGallery{
+.homePageGallery {
     padding-left: 20% !important;
     align-items: center !important;
 }
 
-.homePageLogo{
+.homePageLogo {
     margin-left: -25% !important;
 }
 
-.gg-container, #imageGallery{
-	margin-top: 2% !important;
+.gg-container, #imageGallery {
+    margin-top: 2% !important;
+    margin-left: 20% !important;
 }
 
-.sidebar{
+.sidebar {
     z-index: 0 !important;
 }

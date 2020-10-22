@@ -4,3 +4,4 @@
 skkuweb3/settings.py
 media/
 **migrations/
+*.zip

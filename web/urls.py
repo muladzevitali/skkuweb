@@ -15,6 +15,9 @@ urlpatterns = [
          name='get_large_image'),
     path('portfolio/media/large/<class_folder>/<image_name>', views.get_large_image,
          name='get_large_image'),
+    path('slider/<image_name>', views.get_slider_image,
+         name='get_large_image'),
     path('presets/<preset_id>', views.presets, name='get_preset'),
     path('presets/', views.presets, name='presets'),
+    path('notices', views.notices, name='notices'),
 ]

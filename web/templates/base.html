@@ -20,8 +20,8 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/custom-page.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/commons.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/grid-gallery.css" %}'>
-{% block pageStatics%}
-{% endblock %}
+    {% block pageStatics %}
+    {% endblock %}
 
     <script type="text/javascript"
             src="https://d3s2irdjyrlkk2.cloudfront.net/compiled/js/all.js?id=2010101815084575323957af13"></script>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="stage-body-center ">
-            <div class="sidebar" >
+            <div class="sidebar">
                 <div class="header-spacing u49749-header-bg-color">
                     <div class="metro-header js-vert-header u49749-vert-header-layout ps-container"
                          data-ps-id="e7b3c694-663c-fad9-1e80-813967dcf1ce" style="height: 1248.25px;">
@@ -119,8 +119,8 @@
                                 </li>
                                 <li class="nav-list-common js-nav-list-common">
                                     <div class="drop-group">
-                                        <a class="{% if category == 'book_online' %}cur-active-link{% endif %}"
-                                           href="/">NOTICE</a>
+                                        <a class="{% if category == 'notices' %}cur-active-link{% endif %}"
+                                           href="{% url 'web:notices' %}">NOTICE</a>
                                     </div>
                                 </li>
 

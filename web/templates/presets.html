@@ -30,7 +30,7 @@
                         <h4 class="card-title"><strong>{{ preset.title}}</strong></h4>
                         <!-- Subtitle -->
                         <!-- Text -->
-                        <p class="card-text">{{ preset.description }}</p>
+                        <p class="card-text">{{ preset.description|default_if_none:'' }}</p>
                         <a class="px-2 fa-lg li-ic download-toggle" data-toggle="modal"
                            data-target="#preset-{{ forloop.counter }}"
                            title="Get Preset">
